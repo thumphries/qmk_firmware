@@ -1,9 +1,9 @@
 #ifndef KEYBOARDS_ERGODOX_CONFIG_H_
 #define KEYBOARDS_ERGODOX_CONFIG_H_
 
-#define MOUSEKEY_DELAY          100
+#define MOUSEKEY_DELAY          10
 #define MOUSEKEY_INTERVAL       20
-#define MOUSEKEY_MAX_SPEED      3
+#define MOUSEKEY_MAX_SPEED      10
 #define MOUSEKEY_TIME_TO_MAX    10
 
 #define TAPPING_TOGGLE  1
