@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 extern void (*xfunc_out)(uint8_t);
-#define xdev_out(func) xfunc_out = (void(*)(uint8_t))(func)
+#define xdev_out(func) xfunc_out = (void (*)(uint8_t))(func)
 
 /* This is a pointer to user defined output function. It must be initialized
    before using this modle.
@@ -25,13 +25,11 @@ void xputc(char chr);
    All outputs from this module are output via this function.
 */
 
-
 /*-----------------------------------------------------------------------------*/
 void xputs(const char *string_p);
 
 /*  The string placed in the ROM is forwarded to xputc() directly.
-*/
-
+ */
 
 /*-----------------------------------------------------------------------------*/
 void xitoa(long value, char radix, char width);
@@ -49,15 +47,14 @@ void xitoa(long value, char radix, char width);
        0x55      2     -8   "01010101"
 */
 
-
 /*-----------------------------------------------------------------------------*/
-#define xprintf(format, ...)            __xprintf(PSTR(format), ##__VA_ARGS__)
-#define xsprintf(str, format, ...)      __xsprintf(str, PSTR(format), ##__VA_ARGS__)
-#define xfprintf(func, format, ...)     __xfprintf(func, PSTR(format), ##__VA_ARGS__)
+#define xprintf(format, ...) __xprintf(PSTR(format), ##__VA_ARGS__)
+#define xsprintf(str, format, ...) __xsprintf(str, PSTR(format), ##__VA_ARGS__)
+#define xfprintf(func, format, ...) __xfprintf(func, PSTR(format), ##__VA_ARGS__)
 
-void __xprintf(const char *format_p, ...);	/* Send formatted string to the registered device */
-void __xsprintf(char*, const char *format_p, ...);	/* Put formatted string to the memory */
-void __xfprintf(void(*func)(uint8_t), const char *format_p, ...); /* Send formatted string to the specified device */
+void __xprintf(const char *format_p, ...); /* Send formatted string to the registered device */
+// void __xsprintf(char*, const char *format_p, ...);	/* Put formatted string to the memory */
+// void __xfprintf(void(*func)(uint8_t), const char *format_p, ...); /* Send formatted string to the specified device */
 
 /* Format string is placed in the ROM. The format flags is similar to printf().
 
@@ -84,11 +81,10 @@ void __xfprintf(void(*func)(uint8_t), const char *format_p, ...); /* Send format
 
 */
 
-
 /*-----------------------------------------------------------------------------*/
 char xatoi(char **str, long *ret);
 
-/* Get value of the numeral string. 
+/* Get value of the numeral string.
 
   str
     Pointer to pointer to source string
@@ -108,4 +104,3 @@ char xatoi(char **str, long *ret);
 #endif
 
 #endif
-
