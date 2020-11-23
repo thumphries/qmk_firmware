@@ -32,19 +32,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_NAV] = LAYOUT_ortho_hhkb(
-       TG(_NAV), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______,
-        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                 _______, _______, KC_HOME, KC_END,           _______, _______,          KC_PGUP, KC_PGDN, _______, TG(_NAV)
+       TG(_NAV), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
+        _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, TG(_NAV), _______, _______, _______,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,    KC_RGHT, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______,
+                 _______, _______, KC_HOME, KC_END,           _______, _______,          KC_PGUP, KC_PGDN,  _______, TG(_NAV)
     ),
 
     [_FN] = LAYOUT_ortho_hhkb(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-        _______, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______,
+        M(5),    _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______,
         _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_MPLY,
         _______, RGB_TOG, _______, RGB_HUI, RGB_SAI, RGB_VAI, _______, _______, _______, KC_MUTE, KC_MPRV, KC_MNXT, KC_BSLS, _______,
-                 _______, _______, _______, _______,          _______, _______,          TG(_FN), _______, _______, RESET
+                 _______, _______, _______, _______,          _______, _______,          KC_PGUP, KC_PGDN, _______, RESET
     )
 };
 
@@ -85,6 +85,16 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
             unregister_code(KC_X);
           }
           break;
+        case 5:
+          if (record->event.pressed) {
+            register_code(KC_LALT);
+            register_code(KC_LCTL);
+            register_code(KC_F11);
+            unregister_code(KC_F11);
+            unregister_code(KC_LCTL);
+            unregister_code(KC_LALT);
+          }
+          break;
       }
     return MACRO_NONE;
 };
@@ -106,7 +116,7 @@ uint32_t layer_state_set_user(uint32_t state) {
         rgblight_setrgb (0xFF,  0x00, 0x00);
         break;
     default: //  for any other layers, or the default layer
-        rgblight_setrgb (0x00,  0xFF, 0xFF);
+        rgblight_setrgb (0x00,  0xFF, 0x00);
         break;
     }
   return state;
