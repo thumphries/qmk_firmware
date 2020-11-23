@@ -110,13 +110,13 @@ void matrix_init_user(void) {
 uint32_t layer_state_set_user(uint32_t state) {
     switch (biton32(state)) {
     case _NAV:
-        rgblight_setrgb (0x00,  0x00, 0xFF);
+        rgblight_setrgb (0xD4,  0x67, 0x65);
         break;
     case _FN:
-        rgblight_setrgb (0xFF,  0x00, 0x00);
+        rgblight_setrgb (0x73,  0x2A, 0x47);
         break;
     default: //  for any other layers, or the default layer
-        rgblight_setrgb (0x00,  0xFF, 0x00);
+        rgblight_setrgb (0x0B,  0x32, 0x4D);
         break;
     }
   return state;
