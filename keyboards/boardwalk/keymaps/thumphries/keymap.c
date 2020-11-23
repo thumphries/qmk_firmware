@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC, KC_RBRC, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
         KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    M(4),    M(3),    KC_H,    KC_J,    KC_K,    KC_L,    LT(_FN, KC_SCLN), KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    M(4),    M(3),    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                MO(_NAV), MO(_FN), _______, KC_LGUI,          KC_SPC,  KC_ENT,           MO(_FN), KC_LALT, _______, TG(_NAV)
+                MO(_NAV), MO(_FN), _______, KC_LGUI,          KC_SPC,  KC_ENT,          MO(_NAV), KC_LALT, _______, TG(_NAV)
     ),
 
     [_NAV] = LAYOUT_ortho_hhkb(
@@ -76,7 +76,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
             unregister_code(KC_LCTL);
             unregister_code(KC_B);
           }
-          break;
+          break;;
         case 4:
           if (record->event.pressed) {
             register_code(KC_LCTL);
@@ -103,8 +103,8 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 // RGB stuff
 void matrix_init_user(void) {
     eeconfig_init();
+    layer_state_set_user(_BASE);
     rgblight_enable();
-    rgblight_setrgb(0x00,  0xFF, 0xFF);
 };
 
 uint32_t layer_state_set_user(uint32_t state) {
@@ -113,10 +113,10 @@ uint32_t layer_state_set_user(uint32_t state) {
         rgblight_setrgb (0xD4,  0x67, 0x65);
         break;
     case _FN:
-        rgblight_setrgb (0x73,  0x2A, 0x47);
+        rgblight_setrgb (0x0B,  0x32, 0x4D);
         break;
     default: //  for any other layers, or the default layer
-        rgblight_setrgb (0x0B,  0x32, 0x4D);
+        rgblight_setrgb (0x73,  0x2A, 0x47);
         break;
     }
   return state;
